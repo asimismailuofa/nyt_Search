@@ -29,8 +29,16 @@ $(document).ready(function () {
            // console.log(res.response);
 
             for(var i = 0; i < num; i++){
-                var card = $('<div>' + res.response.docs[i].headline.main + '</div>');
-                $('#well-section').append(card);
+                var row = $('<div class="row"></div>');
+                var fullCard = $('<div class="card"></div>');
+                var head = $('<div class="card-header">' + res.response.docs[i].byline.original + '</div>')
+                var card = $('<div class="card-body">' + res.response.docs[i].headline.main + '</div>');
+                var link = $('<br /><a href="' + res.response.docs[i].web_url + '" >link</a>')
+                fullCard.append(head);
+                fullCard.append(card);
+                card.append(link);
+                row.append(fullCard);
+                $('#well-section').append(row);
             }
 
         });
